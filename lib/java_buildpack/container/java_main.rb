@@ -59,6 +59,8 @@ module JavaBuildpack
           @droplet.additional_libraries.insert 0, @application.root
         end
 
+        @droplet.java_opts.add_system_property 'java.security.egd', 'file:/dev/./urandom'
+
         classpath = @spring_boot_utils.is?(@application) ? '-cp $PWD/.' : @droplet.additional_libraries.as_classpath
         release_text(classpath)
       end
