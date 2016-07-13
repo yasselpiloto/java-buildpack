@@ -46,6 +46,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         @droplet.environment_variables.add_environment_variable 'SERVER_PORT', '$PORT'
+        @droplet.java_opts.add_system_property 'java.security.egd', 'file:/dev/./urandom'
 
         [
           @droplet.environment_variables.as_env_vars,
